@@ -1,18 +1,29 @@
 {
+    "Version": "1.0",
     "Scenarios": {
         "SitAware": {
             "Description": "Holistic Situational Awareness",
-            "Facets":
+            "FacetLayouts":
             {
                 "Admin":["BldCad/Remastered", "BIM/Electronics+Pipes", "ASA1/PhaseI", "ASA2/PhaseI", "Telemetry/Current", "PointCloudScans/Hexagon", "ObjectTracking/Variant1", "HumanTracking/Variant1"],
                 "User":["BldCad/Remastered", "BIM/Electronics+Pipes", "ASA1/PhaseI", "ASA2/PhaseI", "Telemetry/Current", "ObjectTracking/Variant1"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Admin"],
+                "User":["User"]
             }
         },
         "BottleNeck": {
             "Description": "BottleNeck analysis for 2023-04-09",
-            "Facets":
+            "FacetLayouts":
             {
                 "Analyst":["BldCad/Remastered", "ASA1/State-2023-04-09","ASA2/State-2023-04-09",  "Telemetry/State-2023-04-09", "PointCloudScans/Hexagon-2023-04-09", "ObjectTracking", "HumanTracking", "Simulations"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Analyst"],
+                "Analyst":["Analyst"]
             }
         }
     },

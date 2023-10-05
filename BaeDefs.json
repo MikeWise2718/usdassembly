@@ -1,0 +1,57 @@
+{
+    "Scenarios": {
+        "DroneDesign": {
+            "Description": "Drone Design",
+            "FacetLayouts":
+            {
+                "Admin":["DroneDesign/Complete", "PayloadDesign/Radar"],
+                "DroneDesign":["DroneDesign/Complete", "PayloadDesign/Hull"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Admin"],
+                "DroneDesigner":["DroneDesign"]
+            }            
+        },
+        "PayloadDesign": {
+            "Description": "Payload Design",
+            "FacetLayouts":
+            {
+                "Admin":["DroneDesign/Complete", "PayloadDesign/Radar"],
+                "PayloadDesign":["DroneDesign/Noelectronics", "PayloadDesign/Radar"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Admin"],
+                "PayloadDesigner":["PayloadDesign"]
+            }                      
+        }
+    },
+    "Facets":
+    {
+        "Drone":{
+            "Type":"UsdWithVariants",
+            "Variants":["Complete","Noelectronics"]
+        },
+        "Payload":{
+            "Type":"UsdWithVariants",
+            "Variants":["Hull","Radar"]
+        }
+    },
+    "Roles":
+    {
+        "Admin":
+        {
+
+        },
+        "DroneDesigner":
+        {
+
+        },
+        "PayloadDesigner":
+        {
+
+        }
+    }
+
+}
