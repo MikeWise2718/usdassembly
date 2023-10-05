@@ -1,0 +1,8 @@
+BldCad/Remastered
+BIM/Electronics+Pipes
+ASA1/PhaseI
+ASA2/PhaseI
+Telemetry/Current
+PointCloudScans/Hexagon
+ObjectTracking/Variant1
+HumanTracking/Variant1
