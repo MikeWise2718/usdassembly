@@ -1,57 +1,163 @@
 {
+    "Version": "0.2",
     "Scenarios": {
+        "Governance":{
+            "Description": "Overall Evaluation with all details",
+            "Roles":["Admin"],
+            "FacetLayout":[
+                "DroneDesign/Complete",
+                "PayloadDesign/Complete",
+                "ElectricEngineering/Complete",
+                "SceneLayout/V1.3",
+                "DroneMetadata/C1",
+                "PayloadMetadata/C1"
+            ]
+        },
         "DroneDesign": {
             "Description": "Drone Design",
-            "FacetLayouts":
-            {
-                "Admin":["DroneDesign/Complete", "PayloadDesign/Radar"],
-                "DroneDesign":["DroneDesign/Complete", "PayloadDesign/Hull"]
-            },
-            "RoleMappings":
-            {
-                "Admin":["Admin"],
-                "DroneDesigner":["DroneDesign"]
-            }            
+            "Roles":["Admin","DroneDesigner"],
+            "FacetLayout":
+                [
+                    "DroneDesign/Complete", 
+                    "PayloadDesign/Minimum",
+                    "SceneLayout/V1.3",
+                    "DroneMetadata/C1"
+            ]
         },
         "PayloadDesign": {
             "Description": "Payload Design",
-            "FacetLayouts":
-            {
-                "Admin":["DroneDesign/Complete", "PayloadDesign/Radar"],
-                "PayloadDesign":["DroneDesign/Noelectronics", "PayloadDesign/Radar"]
-            },
-            "RoleMappings":
-            {
-                "Admin":["Admin"],
-                "PayloadDesigner":["PayloadDesign"]
-            }                      
+            "Roles":["Admin","PayloadDesigner"],
+            "FacetLayout":
+                [
+                    "DroneDesign/Complete", 
+                    "PayloadDesign/Minimum",
+                    "SceneLayout/V1.3",
+                    "DroneMetadata/C1"
+            ]
         }
     },
     "Facets":
     {
         "Drone":{
-            "Type":"UsdWithVariants",
-            "Variants":["Complete","Noelectronics"]
+            "Type":"OpenUsdFacet",
+            "SubFacets":["Complete","Minimum"]
         },
         "Payload":{
-            "Type":"UsdWithVariants",
-            "Variants":["Hull","Radar"]
+            "Type":"OpenUsdFacet",
+            "SubFacets":["Complete","Hull"]
+        },
+        "ElectricEngineering":{
+            "Type":"OpenUsdFacet",
+            "SubFacets":["Complete","WiresOnly","ComponentsOnly"]
+        },  
+        "SceneLayout":{
+            "Type":"OpenUsdFacet",
+            "SubFacets":["Sea","Land","Rooftop"]
+        },  
+        "DroneMetadata":{
+            "Type":"OpenUsdFacet",
+            "SubFacets":["LegalOnly","Detailed"]
+        },  
+        "PayloadMetadata":{
+            "Type":"OpenUsdFacet",
+            "SubFacets":["LegalOnly","Detailed"]
+        }
+    },
+    "OpenUsdFacet":
+    {
+        "Drone":{
+            "SubFacets":{
+                "Complete":{
+                    "Description":"Complete drone with all detail",
+                    "Latest":"V3",
+                    "Versions":{
+                            "V3":{
+                                "Latest":true,
+                                "LastChanged":"2023-09-15 12:00:00",
+                                "Created":"2023-09-01 12:00:00",
+                                "AssetIdentifier":"@Drone/Complete-V3.usda@",
+                                "PreviousVersion":"V2"
+                            },
+                            "V2":{
+                                "Latest":false,
+                                "LastChanged":"2023-09-15 12:00:00",
+                                "Created":"2023-09-01 12:00:00",
+                                "AssetResolver":"@Drone/Complete-V2.usda@",
+                                "PreviousVersion":"V1"
+                            },
+                            "V1":{
+                                "Latest":false,
+                                "LastChanged":"2023-09-15 12:00:00",
+                                "Created":"2023-09-01 12:00:00",
+                                "AssetResolver":"@Drone/Complete-V1.usda@",
+                                "PreviousVersion":"V0"
+                            },
+                            "V0":{
+                                "Latest":false,
+                                "LastChanged":"2023-09-15 12:00:00",
+                                "Created":"2023-09-01 12:00:00",
+                                "AssetIdentifier":"@Drone/Complete.usda@",
+                                "PreviousVersion":""
+                            }
+                    }
+                },
+                "Minimum":{
+                    "Description":"Minimal drome model for payload design",
+                    "Latest":"V2",
+                    "Versions":{
+                            "V2":{
+                                "AssetIdentifier":"@Drone/Minimal-V2.usda@",
+                                "PreviousVersion":"V1"
+                            },
+                            "V1":{
+                                "AssetIdentifier":"@Drone/Minimal-V1.usda@",
+                                "PreviousVersion":"V0"
+                            },
+                            "V0":{
+                                "AssetIdentifier":"@Drone/Minimal-V0.usda@",
+                                "PreviousVersion":""
+                            }
+                    }
+                }
+            }
         }
     },
     "Roles":
     {
         "Admin":
         {
-
+            "Users":["Andrew"]
         },
         "DroneDesigner":
         {
-
+            "Users":["Joe"]
         },
         "PayloadDesigner":
         {
-
+            "Users":["Sonal", "Paul"]
         }
+    },
+    "Users":
+    {
+        "Andrew":
+        {
+            "FullName":"Andrew Gordon",
+            "Title":"Senior Engineer"
+        },
+        "Sonal":
+        {
+            "FullName":"Sonal Patil",
+            "Title":"Senior Engineer"
+        },
+        "Joe":
+        {
+            "FullName":"Joe Shepherd",
+            "Title":"Engineer"
+        },
+        "Paul":
+        {
+            "FullName":"Paul Rance",
+            "Title":"Artist"
+        }        
     }
-
 }

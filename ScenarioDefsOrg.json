@@ -1,0 +1,85 @@
+{
+    "Version": "0.1",
+    "Scenarios": {
+        "SitAware": {
+            "Description": "Holistic Situational Awareness",
+            "FacetLayouts":
+            {
+                "Admin":["BldCad/Remastered", "BIM/Electronics+Pipes", "ASA1/PhaseI", "ASA2/PhaseI", "Telemetry/Current", "PointCloudScans/Hexagon", "ObjectTracking/Variant1", "HumanTracking/Variant1"],
+                "User":["BldCad/Remastered", "BIM/Electronics+Pipes", "ASA1/PhaseI", "ASA2/PhaseI", "Telemetry/Current", "ObjectTracking/Variant1"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Admin"],
+                "User":["User"]
+            }
+        },
+        "BottleNeck": {
+            "Description": "BottleNeck analysis for 2023-04-09",
+            "FacetLayouts":
+            {
+                "Analyst":["BldCad/Remastered", "ASA1/State-2023-04-09","ASA2/State-2023-04-09",  "Telemetry/State-2023-04-09", "PointCloudScans/Hexagon-2023-04-09", "ObjectTracking", "HumanTracking", "Simulations"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Analyst"],
+                "Analyst":["Analyst"]
+            }
+        }
+    },
+    "Facets":
+    {
+        "BldCad":{
+            "Type":"UsdWithVariants",
+            "Variants":["Original","Remastered","Future"]
+        },
+        "BIM":{
+            "Type":"UsdWithVariants",
+            "Variants":["Electronics","Electronics+Pipes"]
+        },
+        "ASA1":{
+            "Type":"UsdWithVariants",
+            "Variants":["PhaseI","PhaseII"]
+        },
+        "ASA2":{
+            "Type":"UsdWithVariants",
+            "Variants":["PhaseI","PhaseII","State-2023-04-10","State-2023-04-09","State-2023-04-NN"]
+        },
+        "Telemetry":{
+            "Type":"TelemetryImport",
+            "Variants":["Current","Planned","State-2023-04-10","State-2023-04-09","State-2023-04-NN"]
+        },
+        "PointCloudScans":{
+            "Type":"PointCloudImport",
+            "Variants":["Skydio-latest","Hexagon-latest","Hexagon-2023-04-10","Hexagon-2023-04-09","Hexagon-2023-04-NN"]
+        },
+        "ObjectTracking":{
+            "Type":"ObjectTracker",
+            "Variants":["Variant1","Variant2"]
+        },   
+        "HumanTracking":{
+            "Type":"HumanTracker",
+            "Variants":["Variant1","Variant2"]
+        },
+        "Simulations":{
+            "Type":"SimulationDriver",
+            "Variants":["Sim1", "Sim2", "Sim3"]
+        }        
+    },
+    "Roles":
+    {
+        "Admin":
+        {
+
+        },
+        "User":
+        {
+
+        },
+        "Analyst":
+        {
+
+        }
+    }
+
+}

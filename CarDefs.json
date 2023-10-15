@@ -1,0 +1,76 @@
+{
+    "Version": "0.1",
+    "Scenarios": {
+        "Marketing": {
+            "Description": "Drone Design",
+            "FacetLayouts":
+            {
+                "Admin":["DroneDesign/Complete", "PayloadDesign/Radar"],
+                "DroneDesign":["DroneDesign/Complete", "PayloadDesign/Hull"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Admin"],
+                "Marketeer":["DroneDesign"]
+            }            
+        },
+        "Engineering": {
+            "Description": "Payload Design",
+            "FacetLayouts":
+            {
+                "Admin":["DroneDesign/Complete", "PayloadDesign/Radar"],
+                "PayloadDesign":["DroneDesign/Noelectronics", "PayloadDesign/Radar"]
+            },
+            "RoleMappings":
+            {
+                "Admin":["Admin"],
+                "PayloadDesigner":["PayloadDesign"]
+            }                      
+        }
+    },
+    "Facets":
+    {
+        "Car":{
+            "Type":"UsdWithVariants",
+            "Variants":["Complete","Noelectronics"]
+        },
+        "SceneLayout":{
+            "Type":"UsdWithVariants",
+            "Variants":["Hull","Radar"]
+        }
+    },
+    "Roles":
+    {
+        "Admin":
+        {
+            "Users":["Paul"]
+        },
+        "DroneDesigner":
+        {
+            "Users":["Becky"]
+        },
+        "PayloadDesigner":
+        {
+            "Users":["Martyn"]
+        }
+    },
+    "Users":
+    {
+        "Paul":
+        {
+            "FullName":"Paul Tallett",
+            "Title":"Senior Engineer"
+        },
+        "Becky":
+        {
+            "FullName":"Becky Jones",
+            "Title":"Senior Engineer"
+        },
+        "Martyn":
+        {
+            "FullName":"Martyn Gooding",
+            "Title":"Designer"
+        }
+    }
+
+}
