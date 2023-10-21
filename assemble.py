@@ -28,8 +28,8 @@ def get_args():
     return args
 
 
-def CheckConsistency(config_json):  
-    # Check consistency of config file   
+def CheckConsistency(config_json):
+    # Check consistency of config file
 
     # Parameters
     # ----------
@@ -78,20 +78,6 @@ def CheckConsistency(config_json):
 def list_config(scenarios, facets, roles):
     # List config file
 
-    #Parameters
-    #----------
-    #scenarios : dict
-    #    Dictionary of scenarios
-    #facets : dict
-    #    Dictionary of facets
-    #roles : dict
-    #    Dictionary of roles
-
-    #Returns
-    #-------
-    #None
-
-
     print("Scenarios")
     for k1, v1 in scenarios.items():
         print(f"{c1}  {k1}")
@@ -115,26 +101,7 @@ def list_config(scenarios, facets, roles):
 
 
 def assemble_usdfile(scenarios, facets, roles, scenario, role, outfile):
-    # Assemble stage file
-
-    #Parameters
-    #----------
-    #scenarios : dict
-    #    Dictionary of scenarios
-    #facets : dict
-    #    Dictionary of facets
-    #roles : dict
-    #    Dictionary of roles
-    #scenario : str
-    #    Scenario for stage creation
-    #role : str
-    #    Role for which to create stage
-    #outfile : str
-    #    Output file
-
-    #Returns
-    #-------
-    #None
+    # Assemble stage file using the builder pattern from the Go4 book
 
     print(f"Assembling {outfile} for scenario:{scenario} and role:{role}")
 

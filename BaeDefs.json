@@ -7,10 +7,10 @@
             "FacetLayout":[
                 "DroneDesign/Complete",
                 "PayloadDesign/Complete",
-                "ElectricEngineering/Complete",
-                "SceneLayout/V1.3",
-                "DroneMetadata/C1",
-                "PayloadMetadata/C1"
+                "Electrics",
+                "SceneLayout",
+                "DroneMetadata/Detailed",
+                "PayloadMetadata/Detailed"
             ]
         },
         "DroneDesign": {
@@ -19,9 +19,10 @@
             "FacetLayout":
                 [
                     "DroneDesign/Complete", 
-                    "PayloadDesign/Minimum",
-                    "SceneLayout/V1.3",
-                    "DroneMetadata/C1"
+                    "PayloadDesign",
+                    "SceneLayout",
+                    "DroneMetadata/Detailed",
+                    "PayloadMetadata/LegalOnly"
             ]
         },
         "PayloadDesign": {
@@ -30,72 +31,62 @@
             "FacetLayout":
                 [
                     "DroneDesign/Complete", 
-                    "PayloadDesign/Minimum",
-                    "SceneLayout/V1.3",
-                    "DroneMetadata/C1"
+                    "PayloadDesign",
+                    "SceneLayout",
+                    "DroneMetadata/LegalOnly",
+                    "PayloadMetadata/Detailed"
             ]
         }
     },
     "Facets":
     {
-        "Drone":{
-            "Type":"OpenUsdFacet",
-            "SubFacets":["Complete","Minimum"]
+        "DroneDesign":{
+            "Type":"OpenUsdFacetsSubFacets",
+            "Description":"Drone Design"
         },
-        "Payload":{
+        "PayloadDesign":{
             "Type":"OpenUsdFacet",
-            "SubFacets":["Complete","Hull"]
+            "Description":"Payload Design",
+            "AssetIdentifier":"@Payload.usda@"
         },
-        "ElectricEngineering":{
+        "Electrics":{
             "Type":"OpenUsdFacet",
-            "SubFacets":["Complete","WiresOnly","ComponentsOnly"]
+            "AssetIdentifier":"@Electrics.usda@"
         },  
         "SceneLayout":{
             "Type":"OpenUsdFacet",
-            "SubFacets":["Sea","Land","Rooftop"]
+            "AssetIdentifier":"@SceneLayout.usda@"
         },  
         "DroneMetadata":{
-            "Type":"OpenUsdFacet",
+            "Type":"OpenUsdFacetsSubFacets",
             "SubFacets":["LegalOnly","Detailed"]
-        },  
+        },
         "PayloadMetadata":{
-            "Type":"OpenUsdFacet",
+            "Type":"OpenUsdFacetsSubFacets",
             "SubFacets":["LegalOnly","Detailed"]
         }
     },
-    "OpenUsdFacet":
+    "OpenUsdFacetsSubFacets":
     {
-        "Drone":{
+        "DroneDesign":{
             "SubFacets":{
                 "Complete":{
                     "Description":"Complete drone with all detail",
                     "Latest":"V3",
                     "Versions":{
                             "V3":{
-                                "Latest":true,
-                                "LastChanged":"2023-09-15 12:00:00",
-                                "Created":"2023-09-01 12:00:00",
                                 "AssetIdentifier":"@Drone/Complete-V3.usda@",
                                 "PreviousVersion":"V2"
                             },
                             "V2":{
-                                "Latest":false,
-                                "LastChanged":"2023-09-15 12:00:00",
-                                "Created":"2023-09-01 12:00:00",
                                 "AssetResolver":"@Drone/Complete-V2.usda@",
                                 "PreviousVersion":"V1"
                             },
                             "V1":{
-                                "Latest":false,
-                                "LastChanged":"2023-09-15 12:00:00",
-                                "Created":"2023-09-01 12:00:00",
                                 "AssetResolver":"@Drone/Complete-V1.usda@",
                                 "PreviousVersion":"V0"
                             },
                             "V0":{
-                                "Latest":false,
-                                "LastChanged":"2023-09-15 12:00:00",
-                                "Created":"2023-09-01 12:00:00",
                                 "AssetIdentifier":"@Drone/Complete.usda@",
                                 "PreviousVersion":""
                             }
@@ -117,8 +108,44 @@
                                 "AssetIdentifier":"@Drone/Minimal-V0.usda@",
                                 "PreviousVersion":""
                             }
+                        }
                     }
                 }
+            },
+        "PayloadDesign":{
+                "SubFacets":{
+                    "Complete":{
+                        "Description":"Complete drone with all detail",
+                        "AssetIdentifier":"@Payload/CompletePayload.usda@"
+                    },
+                    "Minimum":{
+                        "Description":"Minimal payload model for payload design",
+                        "AssetIdentifier":"@Payload/MinimumPayload.usda@"
+                    }
+                }
+            },     
+        "DroneMetaData":{
+                "SubFacets":{
+                    "Complete":{
+                        "Description":"Complete drone metadata with all detail",
+                        "AssetIdentifier":"@Drone/CompleteMetadata.usda@"
+                    },
+                    "LegalOnly":{
+                        "Description":"Legal-only drone metadata with all detail",
+                        "AssetIdentifier":"@Drone/LegalMetadata.usda@"
+                    }
+                }
+            },
+        "PayloadMetaData":{
+                "SubFacets":{
+                    "Complete":{
+                        "Description":"Complete payload metadata with all detail",
+                        "AssetIdentifier":"@Payload/CompleteMetadata.usda@"
+                    },
+                    "LegalOnly":{
+                        "Description":"Legal-only payload metadata with all detail",
+                        "AssetIdentifier":"@Payload/LegalMetadata.usda@"
+                    }
             }
         }
     },
