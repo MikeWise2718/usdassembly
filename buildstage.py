@@ -2,6 +2,7 @@ from colored import fg, bg
 import argparse
 import time
 import json
+from stager.stager import Stager
 
 r1 = bg('navy_blue') + fg('red')
 c1 = bg('navy_blue') + fg('white')
@@ -10,7 +11,7 @@ c3 = bg('navy_blue') + fg('green')
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description="Assemble ",
+    parser = argparse.ArgumentParser(description="Build Stage ",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument("-c", "--config", action='store', required=True, help="Configuration File",
@@ -27,178 +28,18 @@ def get_args():
     return args
 
 
-def CheckConsistency(config_json):
-    # Check consistency of config file
-
-    # Parameters
-    # ----------
-    # config_json : dict
-    #     Dictionary of config file
-
-    # Returns
-    # -------
-    # scenarios : dict
-    #     Dictionary of scenarios
-    # facets : dict
-    #     Dictionary of facets
-    # roles : dict
-
-    version = config_json['Version']
-    if version <= "0.1":
-        print(f"{r1}Error: Version {version} not supported{c1}")
-        exit(1)
-
-    scenarios = config_json['Scenarios']
-    facets = config_json['Facets']
-    roles = config_json['Roles']
-    ousdfacets = config_json['OpenUsdFacetSubFacets']
-
-    fchk = 0
-    sflchk = 0
-    rchk = 0
-    for k1, v1 in scenarios.items():
-        if k1 not in facets:
-            for k2, v2 in v1.items():
-                if k2 == "FacetLayout":
-                    for v3 in v2:
-                        f = v3
-                        sf = ""
-                        if "/" in f:
-                            f, sf = v3.split("/")
-                        if f not in facets:
-                            print(f"{r1}CC Error 1: In Scenario '{k1}' Facet '{f}' not found in facets{c1}")
-                            exit(1)
-                        if type == "OpenUsdFacetSubFacets":
-                            if sf not in facets[f]["SubFacets"]:
-                                print(f"{r1}CC Error 2: In Scenario '{k1}' SubFacet: '{sf} not found in Facet '{f}'{c1}")
-                                exit(1)
-                        sflchk += 1
-                if k2 == "Roles":
-                    for k3 in v2:
-                        if k3 not in roles:
-                            print(f"{r1}CC Error 3: In Scenario '{k1}' RoleMapping '{k3}' not found in roles {roles}{c1}")
-                            exit(1)
-                        rchk += 1
-        fchk += 1
-    print(f"Consistency check passed fchk:{fchk} sflchk:{sflchk} rchk:{rchk}")
-    return scenarios, facets,  ousdfacets,  roles
-
-
-def list_config(scenarios, facets, ousdfacets, roles):
-    # List config file
-
-    # Parameters
-    # ----------
-    # scenarios : dict
-    #    Dictionary of scenarios
-    # facets : dict
-    #    Dictionary of facets
-    # roles : dict
-    #    Dictionary of roles
-
-    # Returns
-    # -------
-    # None
-
-    print("Scenarios")
-    for k1, v1 in scenarios.items():
-        print(f"{c1}  {k1}")
-        for k2, v2 in v1.items():
-            if k2 == "FacetLayout":
-                for v3 in v2:
-                    print(f"{c2}  FacetLayout: {v3}")
-            elif k2 == "RoleMappings":
-                for k3, v3 in v2.items():
-                    print(f"{c3}  RoleMapping: {k3} - {v3}")
-
-    for k1, v1 in facets.items():
-        print(f"{c1}  {k1}")
-        for k2, v2 in v1.items():
-            print(f"{c2}  {k2} - {v2}")
-
-    for k1, v1 in roles.items():
-        print(f"{c1}  {k1}")
-        for k2, v2 in v1.items():
-            print(f"{c2}  {k2} - {v2}")
-
-
-def assemble_usdfile(scenarios, facets, ousdfacets, roles,  scenario, role, outfile):
-    # Assemble stage file
-
-    # Parameters
-    # ----------
-    # scenarios : dict
-    #    Dictionary of scenarios
-    # facets : dict
-    #    Dictionary of facets
-    # roles : dict
-    #    Dictionary of roles
-    # scenario : str
-    #    Scenario for stage creation
-    # role : str
-    #    Role for which to create stage
-    # outfile : str
-    #    Output file
-
-    # Returns
-    # -------
-    # None
-
-    print(f"Assembling {outfile} for scenario:{scenario} and role:{role}")
-
-    sdict = scenarios[scenario]
-
-    fldict = sdict["FacetLayout"]
-    # rmdict = sdict["RoleMappings"]
-    # rdict = roles[role]
-
-    if role not in roles:
-        print(f"{r1}Error: Role '{role}' not found in RoleMappings for scenario {scenario}  {c1}")
-        exit(1)
-
-    fldict = sdict["FacetLayout"]
-    olst = []
-    for fline in fldict:
-        f = fline
-        sf = ""
-        if "/" in f:
-            f, sf = fline.split("/")
-        fdict = facets[f]
-        typ = fdict["Type"]
-        if typ == "OpenUsdFacet":
-            print(f)
-            line = fdict["AssetIdentifier"] + "\n"
-            print(line)
-            olst.append(line)
-        elif typ == "OpenUsdFacetSubFacets":
-            sfdict = ousdfacets[f]["SubFacets"][sf]
-            if "Versions" in sfdict:
-                latest = sfdict["Latest"]
-                v = sfdict["Versions"][latest]
-                line = v["AssetIdentifier"] + "\n"
-            else:
-                print(f)
-                line = sfdict["AssetIdentifier"] + "\n"
-            print(line)
-            olst.append(line)
-        else:
-            print(f"Unknown type:{typ}")
-
-    ofile = open(outfile, "w")
-    ofile.writelines(olst)
-    ofile.close()
-    print(f"Wrote {len(olst)} lines to {outfile}")
-
-
 def main():
     starttime = time.time()
 
     args = get_args()
 
     config = open(args.config, 'r')
-    config_json = json.load(config)
+    config_json: dict = json.load(config)
 
-    scenarios, facets, ousdfacets, roles = CheckConsistency(config_json)
+    stager = Stager(config_json)
+    stager.CheckConsistency()
+
+    scenarios, facets, ousdfacets, roles = stager.CheckConsistency()
 
     action = args.action
     if action == "a":
@@ -207,7 +48,7 @@ def main():
     print(f"There are scenarios:{len(scenarios)} facets:{len(facets)} roles:{len(roles)} roles")
 
     if action == "list":
-        list_config(scenarios, facets, ousdfacets, roles)
+        stager.ListConfig()
 
     elif action == "assemble":
 
@@ -219,7 +60,7 @@ def main():
             print(f"{r1}Error: Scenario '{args.scenario}' not found in configuration{c1}")
             exit(1)
 
-        assemble_usdfile(scenarios, facets, ousdfacets, roles, args.scenario, args.role, args.outfile)
+        stager.BuildStage(args.scenario, args.role, args.outfile)
 
     elap = time.time() - starttime
 
