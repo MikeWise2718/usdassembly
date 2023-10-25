@@ -51,7 +51,7 @@ def CheckConsistency(config_json):
     scenarios = config_json['Scenarios']
     facets = config_json['Facets']
     roles = config_json['Roles']
-    ousdfacets = config_json['OpenUsdFacetsSubFacets']
+    ousdfacets = config_json['OpenUsdFacetSubFacets']
 
     fchk = 0
     sflchk = 0
@@ -62,12 +62,13 @@ def CheckConsistency(config_json):
                 if k2 == "FacetLayout":
                     for v3 in v2:
                         f = v3
+                        sf = ""
                         if "/" in f:
                             f, sf = v3.split("/")
                         if f not in facets:
                             print(f"{r1}CC Error 1: In Scenario '{k1}' Facet '{f}' not found in facets{c1}")
                             exit(1)
-                        if type=="OpenUsdFacetSubfacet":
+                        if type == "OpenUsdFacetSubFacets":
                             if sf not in facets[f]["SubFacets"]:
                                 print(f"{r1}CC Error 2: In Scenario '{k1}' SubFacet: '{sf} not found in Facet '{f}'{c1}")
                                 exit(1)
@@ -104,7 +105,7 @@ def list_config(scenarios, facets, ousdfacets, roles):
         print(f"{c1}  {k1}")
         for k2, v2 in v1.items():
             if k2 == "FacetLayout":
-                for v3 in v2.items():
+                for v3 in v2:
                     print(f"{c2}  FacetLayout: {v3}")
             elif k2 == "RoleMappings":
                 for k3, v3 in v2.items():
@@ -159,20 +160,29 @@ def assemble_usdfile(scenarios, facets, ousdfacets, roles,  scenario, role, outf
     olst = []
     for fline in fldict:
         f = fline
+        sf = ""
         if "/" in f:
             f, sf = fline.split("/")
         fdict = facets[f]
         typ = fdict["Type"]
         if typ == "OpenUsdFacet":
             print(f)
-            line = fdict["AssetIdentifier"]
+            line = fdict["AssetIdentifier"] + "\n"
             print(line)
-            olst.append(sf)
-        if typ == "OpenUsdFacetSubfacet":
-            sfdict = ousdfacets["SubFacets"][sf]
-            line = f"{fline}\n"
+            olst.append(line)
+        elif typ == "OpenUsdFacetSubFacets":
+            sfdict = ousdfacets[f]["SubFacets"][sf]
+            if "Versions" in sfdict:
+                latest = sfdict["Latest"]
+                v = sfdict["Versions"][latest]
+                line = v["AssetIdentifier"] + "\n"
+            else:
+                print(f)
+                line = sfdict["AssetIdentifier"] + "\n"
             print(line)
-            olst.append(sf)
+            olst.append(line)
+        else:
+            print(f"Unknown type:{typ}")
 
     ofile = open(outfile, "w")
     ofile.writelines(olst)

@@ -41,7 +41,7 @@
     "Facets":
     {
         "DroneDesign":{
-            "Type":"OpenUsdFacetsSubFacets",
+            "Type":"OpenUsdFacetSubFacets",
             "Description":"Drone Design"
         },
         "PayloadDesign":{
@@ -58,15 +58,15 @@
             "AssetIdentifier":"@SceneLayout.usda@"
         },  
         "DroneMetadata":{
-            "Type":"OpenUsdFacetsSubFacets",
+            "Type":"OpenUsdFacetSubFacets",
             "SubFacets":["LegalOnly","Detailed"]
         },
         "PayloadMetadata":{
-            "Type":"OpenUsdFacetsSubFacets",
+            "Type":"OpenUsdFacetSubFacets",
             "SubFacets":["LegalOnly","Detailed"]
         }
     },
-    "OpenUsdFacetsSubFacets":
+    "OpenUsdFacetSubFacets":
     {
         "DroneDesign":{
             "SubFacets":{
@@ -124,9 +124,9 @@
                     }
                 }
             },     
-        "DroneMetaData":{
+        "DroneMetadata":{
                 "SubFacets":{
-                    "Complete":{
+                    "Detailed":{
                         "Description":"Complete drone metadata with all detail",
                         "AssetIdentifier":"@Drone/CompleteMetadata.usda@"
                     },
@@ -136,9 +136,9 @@
                     }
                 }
             },
-        "PayloadMetaData":{
+        "PayloadMetadata":{
                 "SubFacets":{
-                    "Complete":{
+                    "Detailed":{
                         "Description":"Complete payload metadata with all detail",
                         "AssetIdentifier":"@Payload/CompleteMetadata.usda@"
                     },
