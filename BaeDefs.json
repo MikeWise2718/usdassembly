@@ -1,16 +1,19 @@
 {
-    "Version": "0.2",
+    "Version" : "0.3",
+    "Application" : "BaeDroneDesign",
+    "ApplicationDescription" : "Bae PoC for Drone Design Collaboration",
+    "ApplicationVersion": "0.2",
     "Scenarios": {
         "Governance":{
             "Description": "Overall Evaluation with all details",
             "Roles":["Admin"],
             "FacetLayout":[
-                "DroneDesign/Complete",
-                "PayloadDesign/Complete",
+                "DroneDesign/DbComplete",
+                "PayloadDesign/PyCamera",
                 "Electrics",
                 "SceneLayout",
-                "DroneMetadata/Detailed",
-                "PayloadMetadata/Detailed"
+                "DroneMetadata/DmDetailed",
+                "PayloadMetadata/PmDetailed"
             ]
         },
         "DroneDesign": {
@@ -18,11 +21,11 @@
             "Roles":["Admin","DroneDesigner"],
             "FacetLayout":
                 [
-                    "DroneDesign/Complete", 
-                    "PayloadDesign",
+                    "DroneDesign/DbComplete", 
+                    "PayloadDesign/PyMock",
                     "SceneLayout",
-                    "DroneMetadata/Detailed",
-                    "PayloadMetadata/LegalOnly"
+                    "DroneMetadata/DmDetailed",
+                    "PayloadMetadata/PmLegalOnly"
             ]
         },
         "PayloadDesign": {
@@ -30,11 +33,11 @@
             "Roles":["Admin","PayloadDesigner"],
             "FacetLayout":
                 [
-                    "DroneDesign/Complete", 
-                    "PayloadDesign",
+                    "DroneDesign/DbMimimal", 
+                    "PayloadDesign/PyCamera",
                     "SceneLayout",
-                    "DroneMetadata/LegalOnly",
-                    "PayloadMetadata/Detailed"
+                    "DroneMetadata/DmLegalOnly",
+                    "PayloadMetadata/PmDetailed"
             ]
         }
     },
@@ -42,12 +45,13 @@
     {
         "DroneDesign":{
             "Type":"OpenUsdFacetSubFacets",
-            "Description":"Drone Design"
+            "Description":"Drone Design",
+            "SubFacets":["DbComplete","DbMinimum"]           
         },
         "PayloadDesign":{
-            "Type":"OpenUsdFacet",
+            "Type":"OpenUsdFacetSubFacets",
             "Description":"Payload Design",
-            "AssetIdentifier":"@Payload.usda@"
+            "SubFacets":["PyRadar","PyCamera","PyMock"]
         },
         "Electrics":{
             "Type":"OpenUsdFacet",
@@ -59,18 +63,18 @@
         },  
         "DroneMetadata":{
             "Type":"OpenUsdFacetSubFacets",
-            "SubFacets":["LegalOnly","Detailed"]
+            "SubFacets":["DmLegalOnly","DmDetailed"]
         },
         "PayloadMetadata":{
             "Type":"OpenUsdFacetSubFacets",
-            "SubFacets":["LegalOnly","Detailed"]
+            "SubFacets":["PmLegalOnly","PmDetailed"]
         }
     },
     "OpenUsdFacetSubFacets":
     {
         "DroneDesign":{
             "SubFacets":{
-                "Complete":{
+                "DbComplete":{
                     "Description":"Complete drone with all detail",
                     "Latest":"V3",
                     "Versions":{
@@ -92,7 +96,7 @@
                             }
                     }
                 },
-                "Minimum":{
+                "DbMinimum":{
                     "Description":"Minimal drome model for payload design",
                     "Latest":"V2",
                     "Versions":{
@@ -114,23 +118,27 @@
             },
         "PayloadDesign":{
                 "SubFacets":{
-                    "Complete":{
-                        "Description":"Complete drone with all detail",
-                        "AssetIdentifier":"@Payload/CompletePayload.usda@"
+                    "PyCamera":{
+                        "Description":"Camera payload",
+                        "AssetIdentifier":"@Payload/CameraPayload.usda@"
                     },
-                    "Minimum":{
-                        "Description":"Minimal payload model for payload design",
-                        "AssetIdentifier":"@Payload/MinimumPayload.usda@"
+                    "PyRadar":{
+                        "Description":"Radar payload",
+                        "AssetIdentifier":"@Payload/RadarPayload.usda@"
+                    },                    
+                    "PyMock":{
+                        "Description":"Payload mockup with not details",
+                        "AssetIdentifier":"@Payload/MockupPayload.usda@"
                     }
                 }
             },     
         "DroneMetadata":{
                 "SubFacets":{
-                    "Detailed":{
+                    "DmDetailed":{
                         "Description":"Complete drone metadata with all detail",
                         "AssetIdentifier":"@Drone/CompleteMetadata.usda@"
                     },
-                    "LegalOnly":{
+                    "DmLegalOnly":{
                         "Description":"Legal-only drone metadata with all detail",
                         "AssetIdentifier":"@Drone/LegalMetadata.usda@"
                     }
@@ -138,11 +146,11 @@
             },
         "PayloadMetadata":{
                 "SubFacets":{
-                    "Detailed":{
+                    "PmDetailed":{
                         "Description":"Complete payload metadata with all detail",
                         "AssetIdentifier":"@Payload/CompleteMetadata.usda@"
                     },
-                    "LegalOnly":{
+                    "PmLegalOnly":{
                         "Description":"Legal-only payload metadata with all detail",
                         "AssetIdentifier":"@Payload/LegalMetadata.usda@"
                     }
