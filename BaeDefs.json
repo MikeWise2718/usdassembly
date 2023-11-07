@@ -33,11 +33,23 @@
             "Roles":["Admin","PayloadDesigner"],
             "FacetLayout":
                 [
-                    "DroneDesign/DbMimimal", 
+                    "DroneDesign/DbMinimum", 
                     "PayloadDesign/PyCamera",
                     "SceneLayout",
                     "DroneMetadata/DmLegalOnly",
                     "PayloadMetadata/PmDetailed"
+            ]
+        },
+        "DronePayloadCollaboration": {
+            "Description": "Drone-Payload Collorative Design",
+            "Roles":["Admin","PayloadDesigner","DroneDesigner"],
+            "FacetLayout":
+                [
+                    "DroneDesign/DbMinimum", 
+                    "PayloadDesign/PyMock",
+                    "SceneLayout",
+                    "DroneMetadata/DmLegalOnly",
+                    "PayloadMetadata/PmLegalOnly"
             ]
         }
     },

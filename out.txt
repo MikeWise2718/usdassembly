@@ -1,5 +1,5 @@
-@Drone/Complete-V3.usda@
+@Drone/Minimal-V2.usda@
 @Payload/MockupPayload.usda@
 @SceneLayout.usda@
-@Drone/CompleteMetadata.usda@
+@Drone/LegalMetadata.usda@
 @Payload/LegalMetadata.usda@
