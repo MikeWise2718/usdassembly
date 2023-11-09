@@ -1,4 +1,4 @@
-from colored import fg, bg
+from colored import fg, bg, Style
 import argparse
 import time
 import json
@@ -16,20 +16,23 @@ def get_args():
 
     parser.add_argument("-c", "--config", action='store', required=True, help="Configuration File",
                         default="config.json")
-    parser.add_argument("-a", "--action", action='store', required=False, help="List or Assemble", default="list")
+    parser.add_argument("-a", "--action", action='store',
+                        required=False, help="List or Assemble", default="list")
     parser.add_argument("-s", "--scenario", action='store', required=False, help="Senario for stage creation",
                         default="Default")
     parser.add_argument("-r", "--role", action='store', required=False, help="Role for which to create stage",
                         default="User")
-    parser.add_argument("-of", "--outfile", action='store', required=True, help="Output file", default="")
+    parser.add_argument("-of", "--outfile", action='store',
+                        required=True, help="Output file", default="")
     parser.add_argument("-v", "--verbose", action='store_true', default=False)
+    parser.add_argument("-ar", "--assetroot", action='store', required=False, help="Asset root path for USD files")
 
     args = parser.parse_args()
     return args
 
 
 def main():
-    starttime = time.time()
+    startTime = time.time()
 
     args = get_args()
 
@@ -37,35 +40,28 @@ def main():
     config_json: dict = json.load(config)
 
     stager = Stager(config_json)
-    stager.CheckConsistency()
-
-    scenarios, facets, ousdfacets, roles = stager.CheckConsistency()
+    stager.Validate()
 
     action = args.action
     if action == "a":
         action = "assemble"
 
-    print(f"There are scenarios:{len(scenarios)} facets:{len(facets)} roles:{len(roles)} roles")
+    if action == "assemble":
+        isConfigValid = False
+        for scenario in stager.scenarios:
+            if scenario['name'] == args.scenario:
+                if (args.role in scenario['roles']):
+                    isConfigValid = True
+                    break
 
-    if action == "list":
-        stager.ListConfig()
-
-    elif action == "assemble":
-
-        if args.role not in roles:
-            print(f"{r1}Error: Role '{args.role}' not found in configuration{c1}")
+        if not isConfigValid:
+            print(f"{r1}Error: Scenario or role could not be resolved{Style.reset}")
             exit(1)
 
-        if args.scenario not in scenarios:
-            print(f"{r1}Error: Scenario '{args.scenario}' not found in configuration{c1}")
-            exit(1)
+        stager.BuildStage(args.scenario, args.role, args.outfile, args.assetroot)
 
-        stager.BuildStage(args.scenario, args.role, args.outfile)
-
-    elap = time.time() - starttime
-
-    print(f"{c1}Assembly took {c2}{elap:.3f}{c1} secs ")
-
+    elapsedTime = time.time() - startTime
+    print(f"{c1}Assembly took {c2}{elapsedTime:.3f}{Style.reset} secs ")
 
 if __name__ == "__main__":
     main()

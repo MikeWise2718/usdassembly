@@ -1,210 +1,103 @@
 {
-    "Version" : "0.3",
-    "Application" : "BaeDroneDesign",
-    "ApplicationDescription" : "Bae PoC for Drone Design Collaboration",
-    "ApplicationVersion": "0.2",
-    "Scenarios": {
-        "Governance":{
-            "Description": "Overall Evaluation with all details",
-            "Roles":["Admin"],
-            "FacetLayout":[
-                "DroneDesign/DbComplete",
-                "PayloadDesign/PyCamera",
-                "Electrics",
-                "SceneLayout",
-                "DroneMetadata/DmDetailed",
-                "PayloadMetadata/PmDetailed"
+    "version": "0.3",
+    "application": "BaeDroneDesign",
+    "applicationDescription": "Bae PoC for Drone Design Collaboration",
+    "applicationVersion": "0.2",
+    "scenarios": [
+        {
+            "id": 0,
+            "name": "DroneDesign",
+            "description": "Drone Design",
+            "roles": [
+                "Admin",
+                "DroneDesigner"
+            ],
+            "facetLayout": [
+                1
             ]
         },
-        "DroneDesign": {
-            "Description": "Drone Design",
-            "Roles":["Admin","DroneDesigner"],
-            "FacetLayout":
-                [
-                    "DroneDesign/DbComplete", 
-                    "PayloadDesign/PyMock",
-                    "SceneLayout",
-                    "DroneMetadata/DmDetailed",
-                    "PayloadMetadata/PmLegalOnly"
-            ]
-        },
-        "PayloadDesign": {
-            "Description": "Payload Design",
-            "Roles":["Admin","PayloadDesigner"],
-            "FacetLayout":
-                [
-                    "DroneDesign/DbMinimum", 
-                    "PayloadDesign/PyCamera",
-                    "SceneLayout",
-                    "DroneMetadata/DmLegalOnly",
-                    "PayloadMetadata/PmDetailed"
-            ]
-        },
-        "DronePayloadCollaboration": {
-            "Description": "Drone-Payload Collorative Design",
-            "Roles":["Admin","PayloadDesigner","DroneDesigner"],
-            "FacetLayout":
-                [
-                    "DroneDesign/DbMinimum", 
-                    "PayloadDesign/PyMock",
-                    "SceneLayout",
-                    "DroneMetadata/DmLegalOnly",
-                    "PayloadMetadata/PmLegalOnly"
+        {
+            "id": 1,
+            "name": "DroneDesign-Minimal",
+            "description": "Drone Design",
+            "roles": [
+                "Admin",
+                "DroneDesigner"
+            ],
+            "facetLayout": [
+                0
             ]
         }
-    },
-    "Facets":
-    {
-        "DroneDesign":{
-            "Type":"OpenUsdFacetSubFacets",
-            "Description":"Drone Design",
-            "SubFacets":["DbComplete","DbMinimum"]           
+    ],
+    "facets": [
+        {
+            "id": 0,
+            "name": "DroneDesign",
+            "description": "Drone Design",
+            "versions": [
+                {
+                    "id": 0,
+                    "description": "",
+                    "subFacets": [
+                        1,
+                        2
+                    ]
+                }
+            ]
         },
-        "PayloadDesign":{
-            "Type":"OpenUsdFacetSubFacets",
-            "Description":"Payload Design",
-            "SubFacets":["PyRadar","PyCamera","PyMock"]
-        },
-        "Electrics":{
-            "Type":"OpenUsdFacet",
-            "AssetIdentifier":"@Electrics.usda@"
-        },  
-        "SceneLayout":{
-            "Type":"OpenUsdFacet",
-            "AssetIdentifier":"@SceneLayout.usda@"
-        },  
-        "DroneMetadata":{
-            "Type":"OpenUsdFacetSubFacets",
-            "SubFacets":["DmLegalOnly","DmDetailed"]
-        },
-        "PayloadMetadata":{
-            "Type":"OpenUsdFacetSubFacets",
-            "SubFacets":["PmLegalOnly","PmDetailed"]
-        }
-    },
-    "OpenUsdFacetSubFacets":
-    {
-        "DroneDesign":{
-            "SubFacets":{
-                "DbComplete":{
-                    "Description":"Complete drone with all detail",
-                    "Latest":"V3",
-                    "Versions":{
-                            "V3":{
-                                "AssetIdentifier":"@Drone/Complete-V3.usda@",
-                                "PreviousVersion":"V2"
-                            },
-                            "V2":{
-                                "AssetResolver":"@Drone/Complete-V2.usda@",
-                                "PreviousVersion":"V1"
-                            },
-                            "V1":{
-                                "AssetResolver":"@Drone/Complete-V1.usda@",
-                                "PreviousVersion":"V0"
-                            },
-                            "V0":{
-                                "AssetIdentifier":"@Drone/Complete.usda@",
-                                "PreviousVersion":""
-                            }
-                    }
+        {
+            "id": 1,
+            "name": "DbComplete",
+            "description": "Complete drone with all detail",
+            "versions": [
+                {
+                    "id": 3,
+                    "description": "",
+                    "assetIdentifier": "SubUSDs/Drone_Large_Complete.usd",
+                    "previousVersion": 2
                 },
-                "DbMinimum":{
-                    "Description":"Minimal drome model for payload design",
-                    "Latest":"V2",
-                    "Versions":{
-                            "V2":{
-                                "AssetIdentifier":"@Drone/Minimal-V2.usda@",
-                                "PreviousVersion":"V1"
-                            },
-                            "V1":{
-                                "AssetIdentifier":"@Drone/Minimal-V1.usda@",
-                                "PreviousVersion":"V0"
-                            },
-                            "V0":{
-                                "AssetIdentifier":"@Drone/Minimal-V0.usda@",
-                                "PreviousVersion":""
-                            }
-                        }
-                    }
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "@Drone/Complete-V2.usda@",
+                    "previousVersion": 1
+                },
+                {
+                    "id": 1,
+                    "description": "",
+                    "assetIdentifier": "@Drone/Complete-V1.usda@",
+                    "previousVersion": 0
+                },
+                {
+                    "id": 0,
+                    "description": "",
+                    "assetIdentifier": "@Drone/Complete.usda@"
                 }
-            },
-        "PayloadDesign":{
-                "SubFacets":{
-                    "PyCamera":{
-                        "Description":"Camera payload",
-                        "AssetIdentifier":"@Payload/CameraPayload.usda@"
-                    },
-                    "PyRadar":{
-                        "Description":"Radar payload",
-                        "AssetIdentifier":"@Payload/RadarPayload.usda@"
-                    },                    
-                    "PyMock":{
-                        "Description":"Payload mockup with not details",
-                        "AssetIdentifier":"@Payload/MockupPayload.usda@"
-                    }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "DbMinimal",
+            "description": "Minimal drone model for payload design",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "SubUSDs/Drone_Large_Minimal.usd",
+                    "previousVersion": 1
+                },
+                {
+                    "id": 1,
+                    "description": "",
+                    "assetIdentifier": "@Drone/Minimal-V1.usda@",
+                    "previousVersion": 0
+                },
+                {
+                    "id": 0,
+                    "description": "",
+                    "assetIdentifier": "@Drone/Minimal.usda@"
                 }
-            },     
-        "DroneMetadata":{
-                "SubFacets":{
-                    "DmDetailed":{
-                        "Description":"Complete drone metadata with all detail",
-                        "AssetIdentifier":"@Drone/CompleteMetadata.usda@"
-                    },
-                    "DmLegalOnly":{
-                        "Description":"Legal-only drone metadata with all detail",
-                        "AssetIdentifier":"@Drone/LegalMetadata.usda@"
-                    }
-                }
-            },
-        "PayloadMetadata":{
-                "SubFacets":{
-                    "PmDetailed":{
-                        "Description":"Complete payload metadata with all detail",
-                        "AssetIdentifier":"@Payload/CompleteMetadata.usda@"
-                    },
-                    "PmLegalOnly":{
-                        "Description":"Legal-only payload metadata with all detail",
-                        "AssetIdentifier":"@Payload/LegalMetadata.usda@"
-                    }
-            }
+            ]
         }
-    },
-    "Roles":
-    {
-        "Admin":
-        {
-            "Users":["Andrew"]
-        },
-        "DroneDesigner":
-        {
-            "Users":["Joe"]
-        },
-        "PayloadDesigner":
-        {
-            "Users":["Sonal", "Paul"]
-        }
-    },
-    "Users":
-    {
-        "Andrew":
-        {
-            "FullName":"Andrew Gordon",
-            "Title":"Senior Engineer"
-        },
-        "Sonal":
-        {
-            "FullName":"Sonal Patil",
-            "Title":"Senior Engineer"
-        },
-        "Joe":
-        {
-            "FullName":"Joe Shepherd",
-            "Title":"Engineer"
-        },
-        "Paul":
-        {
-            "FullName":"Paul Rance",
-            "Title":"Artist"
-        }        
-    }
+    ]
 }
