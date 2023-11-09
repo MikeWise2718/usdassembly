@@ -63,5 +63,6 @@ def main():
     elapsedTime = time.time() - startTime
     print(f"{c1}Assembly took {c2}{elapsedTime:.3f}{Style.reset} secs ")
 
+
 if __name__ == "__main__":
     main()
