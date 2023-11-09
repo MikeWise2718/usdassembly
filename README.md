@@ -23,5 +23,5 @@ $: python OpenUSD\build_scripts\build_usd.py "C:\USD"
 ## To run:
 
    ```
-   $: python buildstage.py -c BaeDefs.json -s DroneDesign -of out.txt -a a -r Admin
+   $: python buildstage.py -c BaeDefs.json -s DroneDesign -of out.usda -a a -r Admin
    ```
