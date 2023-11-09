@@ -9,6 +9,9 @@ __pycache__/
 *$py.class
 
 
+*.usd
+*.usda
+*.usdc
 
 # C extensions
 *.so
@@ -146,4 +149,4 @@ cython_debug/
 
 USDbig/
 outbig/
-outbig1/
+outbig1/outbig1/
