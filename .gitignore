@@ -8,6 +8,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+/Drone_Test
 
 *.usd
 *.usda
@@ -149,4 +150,4 @@ cython_debug/
 
 USDbig/
 outbig/
-outbig1/outbig1/
+outbig1/
