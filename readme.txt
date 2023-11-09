@@ -1,6 +1,9 @@
 # Readme for Stage Builder
 25 Oct 2023 - Mike Wise
 
+Installing Dependencies:
+
+   `pip install colored`
 
 To run:
 

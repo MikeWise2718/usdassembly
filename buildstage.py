@@ -1,4 +1,4 @@
-from colored import fg, bg
+from colored import fg, bg, Style
 import argparse
 import time
 import json
@@ -53,18 +53,18 @@ def main():
     elif action == "assemble":
 
         if args.role not in roles:
-            print(f"{r1}Error: Role '{args.role}' not found in configuration{c1}")
+            print(f"{r1}Error: Role '{args.role}' not found in configuration{Style.reset}")
             exit(1)
 
         if args.scenario not in scenarios:
-            print(f"{r1}Error: Scenario '{args.scenario}' not found in configuration{c1}")
+            print(f"{r1}Error: Scenario '{args.scenario}' not found in configuration{Style.reset}")
             exit(1)
 
         stager.BuildStage(args.scenario, args.role, args.outfile)
 
     elap = time.time() - starttime
 
-    print(f"{c1}Assembly took {c2}{elap:.3f}{c1} secs ")
+    print(f"{c1}Assembly took {c2}{elap:.3f}{Style.reset} secs ")
 
 
 if __name__ == "__main__":
