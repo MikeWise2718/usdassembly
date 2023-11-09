@@ -8,7 +8,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+/Drone_Test
 
+*.usd
+*.usda
+*.usdc
 
 # C extensions
 *.so
