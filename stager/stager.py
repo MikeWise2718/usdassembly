@@ -98,8 +98,7 @@ class Stager:
         for facet in self.facets:
             # Ensure all facets have a unique id
             if facet['id'] in usedFacetIds:
-                self.Error(
-                    f"Multiple facets with id {facet['id']} in config file")
+                self.Error(f"Multiple facets with id {facet['id']} in config file")
             if not self.ValidateFacet(facet, self.facets):
                 self.Error(f"Invalid facet : {facet}")
                 return False
@@ -160,6 +159,5 @@ class Stager:
                 assetPath = assetIdentifier
                 if assetRoot is not None:
                     assetPath = assetRoot + "/" + assetIdentifier
-                
+
                 refPrim.GetReferences().AddReference(assetPath)
-                    

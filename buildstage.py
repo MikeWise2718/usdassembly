@@ -35,6 +35,8 @@ def main():
     startTime = time.time()
 
     args = get_args()
+    print(f"assetroot: {args.assetroot}")
+    print(f"user: {args.role}")
 
     config = open(args.config, 'r')
     config_json: dict = json.load(config)
