@@ -79,7 +79,7 @@
 
 def Xform "CircuitBoard"
 {
-    def Xform "CircuitBoard_Reduced"
+    def Xform "CircuitBoard"
     {
         double3 xformOp:rotateXYZ = (0, 0, 0)
         double3 xformOp:scale = (1, 1, 1)

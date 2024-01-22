@@ -202,10 +202,4 @@ def Xform "Root" (
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
     }
 
-    def "DroneCameraPayload" (
-        prepend payload = @./DroneCameraPayload.usd@
-    )
-    {
-    }
 }
-

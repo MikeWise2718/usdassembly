@@ -5,63 +5,68 @@
     "applicationVersion": "0.2",
     "scenarios": [
         {
-            "id": 0,
+            "id": 1,
+            "name": "DroneComplete",
+            "description": "Drone Complete - for customers",
+            "roles": [
+                "Admin"
+            ],
+            "facetLayout": [
+                11,
+                21,
+                31,
+                41
+            ]
+        },
+        {
+            "id": 2,
+            "name": "DroneMinimal",
+            "description": "Minimum Drone and Payload - for Collabration",
+            "roles": [
+                "Admin",
+                "DroneDesigner",
+                "PayloadDesigner",
+                "ProgramManager"
+            ],
+            "facetLayout": [
+                12,
+                22,
+                31,
+                42
+            ]
+        },
+        {
+            "id": 3,
             "name": "DroneDesign",
-            "description": "Drone Design",
+            "description": "Drone Design - for Drone Designers",
             "roles": [
                 "Admin",
                 "DroneDesigner"
             ],
             "facetLayout": [
                 11,
-                21
+                21,
+                31,
+                42
             ]
         },
         {
-            "id": 1,
-            "name": "DroneDesign-Minimal",
-            "description": "Drone Design",
+            "id": 4,
+            "name": "PayloadDesignCamera",
+            "description": "Payload Camera Design - for Camera Designers",
             "roles": [
                 "Admin",
-                "DroneDesigner"
+                "PayloadDesigner"
             ],
             "facetLayout": [
                 12,
-                22
+                22,
+                31,
+                41
             ]
         }
     ],
     "facets": [
-        {
-            "id": 0,
-            "name": "DroneDesign",
-            "description": "Drone Design",
-            "versions": [
-                {
-                    "id": 0,
-                    "description": "",
-                    "subFacets": [
-                        11,
-                        21
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "name": "DroneDesign-Minimal",
-            "description": "Drone Design",
-            "versions": [
-                {
-                    "id": 0,
-                    "description": "",
-                    "subFacets": [
-                        12,
-                        22
-                    ]
-                }
-            ]
-        },
         {
             "id": 11,
             "name": "DbComplete",
@@ -110,6 +115,84 @@
                     "id": 2,
                     "description": "",
                     "assetIdentifier": "./Drone/CircuitBoard_Mock.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "CircuitBoard",
+            "description": "Complete circuitboard with all detail",
+            "versions": [
+                {
+                    "id": 3,
+                    "description": "",
+                    "assetIdentifier": "./Drone/CircuitBoard.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "name": "DronePayloadBracket",
+            "description": "Drone Payload Bracket holds the payloads",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "./Drone/DronePayloadBracket.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "name": "Payload_Camera",
+            "description": "Camera for Drone - one of the payloads",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "./Drone/Payload_Camera.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "name": "Payload_Camera_Mock",
+            "description": "Mock Camera for Drone - one of the payloads",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "./Drone/Payload_Camera_Mock.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 51,
+            "name": "Payload_Radar",
+            "description": "Radar for Drone - one of the payloads",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "./Drone/Payload_Radar.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 52,
+            "name": "Payload_Radar_Mock",
+            "description": "Mock Radera for Drone - one of the payloads",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "./Drone/Payload_Radar_Mock.usda",
                     "previousVersion": 0
                 }
             ]

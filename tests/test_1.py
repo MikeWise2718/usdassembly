@@ -52,33 +52,31 @@ def delete_file_if_exists(fname: str):
     # python buildstage.py -c BaeDefs.json -s DroneDesign -of out.usda -a a -r
 
 
-def test_complete_model():
+def do_generate_model(scenario, usdname, role):
     config = open("tests/DroneDefs.json", 'r')
     config_json: dict = json.load(config)
 
     stager = Stager(config_json)
     stager.Validate()
 
-    usdfile = "./test_usd_files/drone_complete_model.usda"
+    usdfile = "./test_usd_files/" + usdname
     delete_file_if_exists(usdfile)
-
-    scenario = "DroneDesign"
-    role = "Admin"
     assetroot = None
+
     stager.BuildStage(scenario, role, usdfile, assetroot)
+
+
+def test_complete_model():
+    do_generate_model("DroneComplete", "drone_complete_model.usda", "Admin")
 
 
 def test_minimal_model():
-    config = open("tests/DroneDefs.json", 'r')
-    config_json: dict = json.load(config)
+    do_generate_model("DroneMinimal", "drone_complete_model.usda", "ProgramManager")
 
-    stager = Stager(config_json)
-    stager.Validate()
 
-    usdfile = "./test_usd_files/drone_minimal_model.usda"
-    delete_file_if_exists(usdfile)
+def test_drone_design_model():
+    do_generate_model("DroneDesign", "drone_design_model.usda", "DroneDesigner")
 
-    scenario = "DroneDesign-Minimal"
-    role = "Admin"
-    assetroot = None
-    stager.BuildStage(scenario, role, usdfile, assetroot)
+
+def test_payload_camera_design_model():
+    do_generate_model("PayloadDesignCamera", "payload_design_model.usda", "PayloadDesigner")
