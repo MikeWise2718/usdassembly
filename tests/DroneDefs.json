@@ -13,7 +13,8 @@
                 "DroneDesigner"
             ],
             "facetLayout": [
-                1
+                11,
+                21
             ]
         },
         {
@@ -25,7 +26,8 @@
                 "DroneDesigner"
             ],
             "facetLayout": [
-                0
+                12,
+                22
             ]
         }
     ],
@@ -39,14 +41,29 @@
                     "id": 0,
                     "description": "",
                     "subFacets": [
-                        1,
-                        2
+                        11,
+                        21
                     ]
                 }
             ]
         },
         {
             "id": 1,
+            "name": "DroneDesign-Minimal",
+            "description": "Drone Design",
+            "versions": [
+                {
+                    "id": 0,
+                    "description": "",
+                    "subFacets": [
+                        12,
+                        22
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 11,
             "name": "DbComplete",
             "description": "Complete drone with all detail",
             "versions": [
@@ -54,48 +71,46 @@
                     "id": 3,
                     "description": "",
                     "assetIdentifier": "./Drone/Drone_Large_Complete.usda",
-                    "previousVersion": 2
-                },
-                {
-                    "id": 2,
-                    "description": "",
-                    "assetIdentifier": "@Drone/Complete-V2.usda@",
-                    "previousVersion": 1
-                },
-                {
-                    "id": 1,
-                    "description": "",
-                    "assetIdentifier": "@Drone/Complete-V1.usda@",
                     "previousVersion": 0
-                },
-                {
-                    "id": 0,
-                    "description": "",
-                    "assetIdentifier": "@Drone/Complete.usda@"
                 }
             ]
         },
         {
-            "id": 2,
+            "id": 12,
             "name": "DbMinimal",
             "description": "Minimal drone model for payload design",
             "versions": [
                 {
                     "id": 2,
                     "description": "",
-                    "assetIdentifier": "./Drone/Drone_Large_Minimal.usda",
-                    "previousVersion": 1
-                },
-                {
-                    "id": 1,
-                    "description": "",
-                    "assetIdentifier": "@Drone/Minimal-V1.usda@",
+                    "assetIdentifier": "./Drone/Drone_Minimal.usda",
                     "previousVersion": 0
-                },
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "CircuitBoard",
+            "description": "Complete circuitboard with all detail",
+            "versions": [
                 {
-                    "id": 0,
+                    "id": 3,
                     "description": "",
-                    "assetIdentifier": "@Drone/Minimal.usda@"
+                    "assetIdentifier": "./Drone/DroneCircuitBoard.usda",
+                    "previousVersion": 0
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "CircuitBoard",
+            "description": "Mock circuitboard placeholder",
+            "versions": [
+                {
+                    "id": 2,
+                    "description": "",
+                    "assetIdentifier": "./Drone/DroneCircuitBoard_Mock.usda",
+                    "previousVersion": 0
                 }
             ]
         }

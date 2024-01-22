@@ -1,6 +1,5 @@
 {
-        "python.analysis.typeCheckingMode": "basic",
-        "python.linting.flake8Args": [
+        "flake8.args": [
             "--max-line-length=120",
             "--ignore=E225,E226,E402,E501,F401,F841"
         ]

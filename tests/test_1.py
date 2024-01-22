@@ -4,6 +4,7 @@ from pxr import Usd, UsdGeom
 import json
 from stager.stager import Stager
 
+
 def setup_module():
     Path("./test_usd_files").mkdir(parents=True, exist_ok=True)
     # print('This is setup_module method, executed only once when there are multiple test classes.')
@@ -35,7 +36,6 @@ def delete_file_if_exists(fname: str):
     if Path(fname).exists():
         assert False  # oppsie, we failed to delete the file
 
-
     # parser.add_argument("-c", "--config", action='store', required=True, help="Configuration File",
     #                     default="config.json")
     # parser.add_argument("-a", "--action", action='store',
@@ -59,13 +59,13 @@ def test_complete_model():
     stager = Stager(config_json)
     stager.Validate()
 
-    usdfile = "./test_usd_files/drone_admin_test.usda"
+    usdfile = "./test_usd_files/drone_complete_model.usda"
     delete_file_if_exists(usdfile)
 
     scenario = "DroneDesign"
     role = "Admin"
     assetroot = None
-    stager.BuildStage(scenario, role, usdfile, assetroot )
+    stager.BuildStage(scenario, role, usdfile, assetroot)
 
 
 def test_minimal_model():
@@ -75,10 +75,10 @@ def test_minimal_model():
     stager = Stager(config_json)
     stager.Validate()
 
-    usdfile = "./test_usd_files/drone_admin_test.usda"
+    usdfile = "./test_usd_files/drone_minimal_model.usda"
     delete_file_if_exists(usdfile)
 
     scenario = "DroneDesign-Minimal"
     role = "Admin"
     assetroot = None
-    stager.BuildStage(scenario, role, usdfile, assetroot )
+    stager.BuildStage(scenario, role, usdfile, assetroot)
