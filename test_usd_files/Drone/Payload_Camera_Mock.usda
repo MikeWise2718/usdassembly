@@ -1,0 +1,211 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (50000, 0, 0)
+                double radius = 500
+            }
+            dictionary Perspective = {
+                double3 position = (-92.38076644820843, -39.176549089511084, 16.874458558686257)
+                double3 target = (-9.385719786686778, -1.0869105142596496, 2.156012145823574)
+            }
+            dictionary Right = {
+                double3 position = (0, -50000, 0)
+                double radius = 500
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 50000)
+                double radius = 500
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary navmeshSettings = {
+            double agentHeight = 180
+            double agentRadius = 20
+            bool excludeRigidBodies = 1
+            uint64 ver = 1
+            double voxelCeiling = 460
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./Payload_Camera_Mock.usd"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+            float3 "rtx:debugView:pixelDebug:textColor" = (0, 1e18, 0)
+            float3 "rtx:fog:fogColor" = (0.75, 0.75, 0.75)
+            float3 "rtx:index:regionOfInterestMax" = (0, 0, 0)
+            float3 "rtx:index:regionOfInterestMin" = (0, 0, 0)
+            float3 "rtx:iray:environment_dome_ground_position" = (0, 0, 0)
+            float3 "rtx:iray:environment_dome_ground_reflectivity" = (0, 0, 0)
+            float3 "rtx:iray:environment_dome_rotation_axis" = (3.4028235e38, 3.4028235e38, 3.4028235e38)
+            float3 "rtx:post:backgroundZeroAlpha:backgroundDefaultColor" = (0, 0, 0)
+            float3 "rtx:post:colorcorr:contrast" = (1, 1, 1)
+            float3 "rtx:post:colorcorr:gain" = (1, 1, 1)
+            float3 "rtx:post:colorcorr:gamma" = (1, 1, 1)
+            float3 "rtx:post:colorcorr:offset" = (0, 0, 0)
+            float3 "rtx:post:colorcorr:saturation" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:blackpoint" = (0, 0, 0)
+            float3 "rtx:post:colorgrad:contrast" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:gain" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:gamma" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:lift" = (0, 0, 0)
+            float3 "rtx:post:colorgrad:multiply" = (1, 1, 1)
+            float3 "rtx:post:colorgrad:offset" = (0, 0, 0)
+            float3 "rtx:post:colorgrad:whitepoint" = (1, 1, 1)
+            float3 "rtx:post:lensDistortion:lensFocalLengthArray" = (10, 30, 50)
+            float3 "rtx:post:lensFlares:anisoFlareFalloffX" = (450, 475, 500)
+            float3 "rtx:post:lensFlares:anisoFlareFalloffY" = (10, 10, 10)
+            float3 "rtx:post:lensFlares:cutoffPoint" = (2, 2, 2)
+            float3 "rtx:post:lensFlares:haloFlareFalloff" = (10, 10, 10)
+            float3 "rtx:post:lensFlares:haloFlareRadius" = (75, 75, 75)
+            float3 "rtx:post:lensFlares:isotropicFlareFalloff" = (50, 50, 50)
+            float3 "rtx:post:tonemap:whitepoint" = (1, 1, 1)
+            float3 "rtx:raytracing:inscattering:singleScatteringAlbedo" = (0.9, 0.9, 0.9)
+            float3 "rtx:raytracing:inscattering:transmittanceColor" = (0.5, 0.5, 0.5)
+            float3 "rtx:sceneDb:ambientLightColor" = (0.1, 0.1, 0.1)
+        }
+    }
+    defaultPrim = "Root"
+    endTimeCode = 0
+    metersPerUnit = 0.01
+    startTimeCode = -1
+    upAxis = "Z"
+)
+
+def Xform "Root" (
+    kind = "component"
+)
+{
+    float3 xformOp:rotateXYZ = (0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (4.954013056905408, -25.016458654823026, -7.066233062794332)
+    double3 xformOp:translate:pivot = (-4.118429431079308, 25.385729323504176, 7.511217005734935)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+
+    def Xform "Materials"
+    {
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (0, 0, 0)
+        double3 xformOp:translate:pivot = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+    }
+
+    def Scope "Looks"
+    {
+        def Material "Glass_Clear"
+        {
+            token outputs:mdl:displacement.connect = </Root/Looks/Glass_Clear/Shader.outputs:out>
+            token outputs:mdl:surface.connect = </Root/Looks/Glass_Clear/Shader.outputs:out>
+            token outputs:mdl:volume.connect = </Root/Looks/Glass_Clear/Shader.outputs:out>
+
+            def Shader "Shader"
+            {
+                uniform token info:implementationSource = "sourceAsset"
+                uniform asset info:mdl:sourceAsset = @./materials/Glass_Clear.mdl@
+                uniform token info:mdl:sourceAsset:subIdentifier = "Glass_Clear"
+                token outputs:out (
+                    renderType = "material"
+                )
+            }
+        }
+
+        def Material "Paint_Gun_Metal_Black_0"
+        {
+            token outputs:mdl:displacement.connect = </Root/Looks/Paint_Gun_Metal_Black_0/Shader.outputs:out>
+            token outputs:mdl:surface.connect = </Root/Looks/Paint_Gun_Metal_Black_0/Shader.outputs:out>
+            token outputs:mdl:volume.connect = </Root/Looks/Paint_Gun_Metal_Black_0/Shader.outputs:out>
+
+            def Shader "Shader"
+            {
+                uniform token info:implementationSource = "sourceAsset"
+                uniform asset info:mdl:sourceAsset = @./materials/Paint_Gun_Metal.mdl@
+                uniform token info:mdl:sourceAsset:subIdentifier = "Paint_Gun_Metal_Black_0"
+                token outputs:out (
+                    renderType = "material"
+                )
+            }
+        }
+
+        def Material "Paint_Gun_Metal_Black_01"
+        {
+            token outputs:mdl:displacement.connect = </Root/Looks/Paint_Gun_Metal_Black_01/Shader.outputs:out>
+            token outputs:mdl:surface.connect = </Root/Looks/Paint_Gun_Metal_Black_01/Shader.outputs:out>
+            token outputs:mdl:volume.connect = </Root/Looks/Paint_Gun_Metal_Black_01/Shader.outputs:out>
+
+            def Shader "Shader"
+            {
+                uniform token info:implementationSource = "sourceAsset"
+                uniform asset info:mdl:sourceAsset = @./materials/Paint_Gun_Metal.mdl@
+                uniform token info:mdl:sourceAsset:subIdentifier = "Paint_Gun_Metal_Black_0"
+                token outputs:out (
+                    renderType = "material"
+                )
+            }
+        }
+
+        def Material "Paint_Gun_Metal_Black_25"
+        {
+            token outputs:mdl:displacement.connect = </Root/Looks/Paint_Gun_Metal_Black_25/Shader.outputs:out>
+            token outputs:mdl:surface.connect = </Root/Looks/Paint_Gun_Metal_Black_25/Shader.outputs:out>
+            token outputs:mdl:volume.connect = </Root/Looks/Paint_Gun_Metal_Black_25/Shader.outputs:out>
+
+            def Shader "Shader"
+            {
+                uniform token info:implementationSource = "sourceAsset"
+                uniform asset info:mdl:sourceAsset = @./materials/Paint_Gun_Metal.mdl@
+                uniform token info:mdl:sourceAsset:subIdentifier = "Paint_Gun_Metal_Black_25"
+                token outputs:out (
+                    renderType = "material"
+                )
+            }
+        }
+
+        def Material "Paint_Gun_Metal_Black_26"
+        {
+            token outputs:mdl:displacement.connect = </Root/Looks/Paint_Gun_Metal_Black_26/Shader.outputs:out>
+            token outputs:mdl:surface.connect = </Root/Looks/Paint_Gun_Metal_Black_26/Shader.outputs:out>
+            token outputs:mdl:volume.connect = </Root/Looks/Paint_Gun_Metal_Black_26/Shader.outputs:out>
+
+            def Shader "Shader"
+            {
+                uniform token info:implementationSource = "sourceAsset"
+                uniform asset info:mdl:sourceAsset = @./materials/Paint_Gun_Metal.mdl@
+                uniform token info:mdl:sourceAsset:subIdentifier = "Paint_Gun_Metal_Black_25"
+                token outputs:out (
+                    renderType = "material"
+                )
+            }
+        }
+    }
+
+    def Mesh "CameraProxy"
+    {
+        float3[] extent = [(-50, -50, -50), (50, 50, 50)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 1, 3, 2, 4, 6, 7, 5, 6, 2, 3, 7, 4, 5, 1, 0, 4, 0, 2, 6, 5, 7, 3, 1]
+        normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)] (
+            interpolation = "faceVarying"
+        )
+        point3f[] points = [(-50, -50, 50), (50, -50, 50), (-50, 50, 50), (50, 50, 50), (-50, -50, -50), (50, -50, -50), (-50, 50, -50), (50, 50, -50)]
+        texCoord2f[] primvars:st = [(0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0), (0, 1), (0, 0), (1, 0), (1, 1), (0, 0), (1, 0), (1, 1), (0, 1), (0, 0), (1, 0), (1, 1), (0, 1), (1, 0), (1, 1), (0, 1), (0, 0)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+        double3 xformOp:rotateXYZ = (0, 0, 0)
+        double3 xformOp:scale = (0.16723730274884377, 0.16776605270886097, 0.1796448752929877)
+        double3 xformOp:translate = (-4.118429431079307, 25.385729323504176, -1.4710271855481363)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+    }
+
+    def "DroneCameraPayload" (
+        prepend payload = @./DroneCameraPayload.usd@
+    )
+    {
+    }
+}
+

@@ -11,7 +11,6 @@ __pycache__/
 /Drone_Test
 
 *.usd
-*.usda
 *.usdc
 
 # C extensions

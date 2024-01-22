@@ -70,7 +70,7 @@
                 {
                     "id": 3,
                     "description": "",
-                    "assetIdentifier": "./Drone/Drone_Large_Complete.usda",
+                    "assetIdentifier": "./Drone/Drone_Complete.usda",
                     "previousVersion": 0
                 }
             ]
@@ -96,7 +96,7 @@
                 {
                     "id": 3,
                     "description": "",
-                    "assetIdentifier": "./Drone/DroneCircuitBoard.usda",
+                    "assetIdentifier": "./Drone/CircuitBoard.usda",
                     "previousVersion": 0
                 }
             ]
@@ -109,7 +109,7 @@
                 {
                     "id": 2,
                     "description": "",
-                    "assetIdentifier": "./Drone/DroneCircuitBoard_Mock.usda",
+                    "assetIdentifier": "./Drone/CircuitBoard_Mock.usda",
                     "previousVersion": 0
                 }
             ]
