@@ -36,16 +36,6 @@ def delete_file_if_exists(fname: str):
         assert False  # oppsie, we failed to delete the file
 
 
-def test_star():
-    config = open("DroneDefs.json", 'r')
-    config_json: dict = json.load(config)
-
-    stager = Stager(config_json)
-    stager.Validate()
-
-    usdfile = "./test_usd_files/drone_test.usda"
-    delete_file_if_exists(usdfile)
-
     # parser.add_argument("-c", "--config", action='store', required=True, help="Configuration File",
     #                     default="config.json")
     # parser.add_argument("-a", "--action", action='store',
@@ -61,7 +51,34 @@ def test_star():
 
     # python buildstage.py -c BaeDefs.json -s DroneDesign -of out.usda -a a -r
 
+
+def test_complete_model():
+    config = open("tests/DroneDefs.json", 'r')
+    config_json: dict = json.load(config)
+
+    stager = Stager(config_json)
+    stager.Validate()
+
+    usdfile = "./test_usd_files/drone_admin_test.usda"
+    delete_file_if_exists(usdfile)
+
     scenario = "DroneDesign"
+    role = "Admin"
+    assetroot = None
+    stager.BuildStage(scenario, role, usdfile, assetroot )
+
+
+def test_minimal_model():
+    config = open("tests/DroneDefs.json", 'r')
+    config_json: dict = json.load(config)
+
+    stager = Stager(config_json)
+    stager.Validate()
+
+    usdfile = "./test_usd_files/drone_admin_test.usda"
+    delete_file_if_exists(usdfile)
+
+    scenario = "DroneDesign-Minimal"
     role = "Admin"
     assetroot = None
     stager.BuildStage(scenario, role, usdfile, assetroot )
