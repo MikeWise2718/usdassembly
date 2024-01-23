@@ -1,5 +1,5 @@
 from colored import fg, bg, Style
-from pxr import Usd, Sdf
+from pxr import Usd, UsdGeom, Sdf, Gf
 
 r1 = bg('navy_blue') + fg('red')
 c1 = bg('navy_blue') + fg('white')
@@ -137,6 +137,35 @@ class Stager:
         self._AddAssetsToStage(stage, scenario["facetLayout"], assetRoot)
         stage.Save()
 
+    def StringToListOfNumbers(self, string):
+        # strip brackets from first and last position
+        if string[0] == '[' and string[-1] == ']':
+            strlist = string[1:-1]
+        if string[0] == '(' and string[-1] == ')':
+            strlist = string[1:-1]
+        # now split the string into a list
+        strlist = strlist.split(",")
+        # convert each element to an float
+        floatlist = [float(x) for x in strlist]
+        return floatlist
+
+    def StringToValue(self, string):
+        # strip brackets from first and last position
+        if string[0] == '[' and string[-1] == ']':
+            strlist = string[1:-1]
+        if string[0] == '(' and string[-1] == ')':
+            strlist = string[1:-1]
+        # now split the string into a list
+        strlist = strlist.split(",")
+        # convert each element to an float
+        floatlist = [float(x) for x in strlist]
+        return floatlist[0]
+
+    def StringToGfVec3f(self, string):
+        floatlist = self.StringToListOfNumbers(string)
+        return Gf.Vec3f(floatlist)
+
+
     def _FindFacet(self, facetId):
         for facet in self.facets:
             if facet['id'] == facetId:
@@ -144,30 +173,49 @@ class Stager:
         return None
 
     def _AddAssetsToStage(self, stage, facetLayout, assetRoot):
+        stageRoot = "/World"
         for facetId in facetLayout:
             facet = self._FindFacet(facetId)
             if facet is None:
                 self.Error(f'Failed to find facet with id: {facetId}')
                 exit(1)
             # TODO: Automatically getting the first version should this be configurable?
+            mode = "StackedReferences"
+            mode = "NotStackedReferences"
             latestVersion = facet['versions'][0]
+            assetIdentifier = latestVersion['assetIdentifier']
+            assetPath = assetIdentifier
+            if assetRoot is not None:
+                assetPath = assetRoot + "/" + assetIdentifier
+
             if 'subFacets' in latestVersion:
                 self._AddAssetsToStage(stage, latestVersion["subFacets"], assetRoot)
             else:
-                assetIdentifier = latestVersion['assetIdentifier']
-                refPrim = stage.OverridePrim('/refPrim')
-                assetPath = assetIdentifier
-                if assetRoot is not None:
-                    assetPath = assetRoot + "/" + assetIdentifier
+                if mode == "StackedReferences":
+                    refPrim = stage.OverridePrim('/refPrim')
+                else:
+                    rpname = facet['name']
+                    if "rootprimname" in facet:
+                        rpname = facet["rootprimname"]
+                    rppath = f"{stageRoot}/{rpname}"
+                    xformPrim = UsdGeom.Xform.Define(stage, rppath)
+                    refPrim: Usd.Prim = xformPrim.GetPrim()
+                    if "scaleop" in facet:
+                        ska = self.StringToGfVec3f(facet["scaleop"])
+                        xformPrim.AddScaleOp().Set(ska)
+                    if "transop" in facet:
+                        ska = self.StringToGfVec3f(facet["transop"])
+                        xformPrim.AddTranslateOp().Set(ska)
+                    if "rotxop" in facet:
+                        ang = self.StringToValue(facet["rotxop"])
+                        xformPrim.AddRotateXOp().Set(ang)
+                    if "rotyop" in facet:
+                        ang = self.StringToValue(facet["rotyop"])
+                        xformPrim.AddRotateYOp().Set(ang)
+                    if "rotzop" in facet:
+                        ang = self.StringToValue(facet["rotzop"])
+                        xformPrim.AddRotateXOp().Set(ang)
+
                 rv = refPrim.GetReferences().AddReference(assetPath)
-                if "rootprimname" in facet:
-                    rpn = facet["rootprimname"]
-                    prim = stage.GetPrimAtPath(f"/refPrim{rpn}")
-                aprim = stage.GetPrimAtPath("/refPrim")
-                # if assetLayer is None:
-                #     self.Error(f'Failed to find asset with path: {assetPath}')
-                #     exit(1)
-                # if "transOp" in latestVersion:
-                #     pt = (0, 10, 0)
-                #     print(assetLayer)
-                #     assetLayer.AddTranslateOp().Set(pt)
+                if not rv:
+                    self.Error(f"Failed to add reference {assetPath} tp refPrim")

@@ -71,7 +71,7 @@
             "id": 11,
             "name": "DbComplete",
             "description": "Complete drone with all detail",
-            "rootprimname" : "/Drone_Large1",
+            "rootprimname" : "DroneBodyComplete",
             "versions": [
                 {
                     "id": 3,
@@ -85,6 +85,7 @@
             "id": 12,
             "name": "DbMinimal",
             "description": "Minimal drone model for payload design",
+            "rootprimname" : "DroneBodyMinimal",
             "versions": [
                 {
                     "id": 2,
@@ -98,13 +99,14 @@
             "id": 21,
             "name": "CircuitBoard",
             "description": "Complete circuitboard with all detail",
+            "rootprimname" : "CircuitBoard",
+            "transop" : "(0.0, 52.4, -1.57)",
             "versions": [
                 {
                     "id": 3,
                     "description": "",
                     "assetIdentifier": "./Drone/CircuitBoard.usda",
-                    "previousVersion": 0,
-                    "transOp" : "(0,10,0)"
+                    "previousVersion": 0
                 }
             ]
         },
@@ -112,6 +114,8 @@
             "id": 22,
             "name": "CircuitBoardMock",
             "description": "Mock circuitboard placeholder",
+            "rootprimname" : "CircuitBoardMock",
+            "transop" : "(0.0, 51.0, -1.57)",
             "versions": [
                 {
                     "id": 2,
@@ -124,6 +128,8 @@
         {
             "id": 31,
             "name": "Payload_Bracket",
+            "rootprimname" : "PayloadBracket",
+            "transop" : "(-3.5,31,-3.1)",
             "description": "Drone Payload Bracket holds the payloads",
             "versions": [
                 {
@@ -138,6 +144,9 @@
             "id": 41,
             "name": "Payload_Camera",
             "description": "Camera for Drone - one of the payloads",
+            "rootprimname" : "PayloadCamera",
+            "transop" : "(0.0, 33.2, -1.5)",
+            "rotxop" : "(-90)",
             "versions": [
                 {
                     "id": 2,
@@ -151,6 +160,8 @@
             "id": 42,
             "name": "Payload_Camera_Mock",
             "description": "Mock Camera for Drone - one of the payloads",
+            "transop" : "(2.05, -0.42, -1.2)",
+            "rootprimname" : "PayloadCameraMock",
             "versions": [
                 {
                     "id": 2,
@@ -164,6 +175,8 @@
             "id": 51,
             "name": "Payload_Radar",
             "description": "Radar for Drone - one of the payloads",
+            "rootprimname" : "PayloadRadar",
+            "transop" : "(2.05, -0.42, -1.2)",
             "versions": [
                 {
                     "id": 2,
@@ -177,6 +190,7 @@
             "id": 52,
             "name": "Payload_Radar_Mock",
             "description": "Mock Radera for Drone - one of the payloads",
+            "rootprimname" : "PayloadRadarMock",
             "versions": [
                 {
                     "id": 2,

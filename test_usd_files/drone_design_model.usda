@@ -1,13 +1,35 @@
 #usda 1.0
 
-over "refPrim" (
-    prepend references = [
-        @./Drone/Drone_Complete.usda@,
-        @./Drone/CircuitBoard.usda@,
-        @./Drone/Payload_Bracket.usda@,
-        @./Drone/Payload_Camera_Mock.usda@
-    ]
-)
+def "World"
 {
+    def Xform "DroneBodyComplete" (
+        prepend references = @./Drone/Drone_Complete.usda@
+    )
+    {
+    }
+
+    def Xform "CircuitBoard" (
+        prepend references = @./Drone/CircuitBoard.usda@
+    )
+    {
+        double3 xformOp:translate = (0, 52.400001525878906, -1.5700000524520874)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "PayloadBracket" (
+        prepend references = @./Drone/Payload_Bracket.usda@
+    )
+    {
+        double3 xformOp:translate = (-3.5, 31, -3.0999999046325684)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "PayloadCameraMock" (
+        prepend references = @./Drone/Payload_Camera_Mock.usda@
+    )
+    {
+        double3 xformOp:translate = (2.049999952316284, -0.41999998688697815, -1.2000000476837158)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
 }
 
