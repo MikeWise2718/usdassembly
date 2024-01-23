@@ -65,6 +65,13 @@ def do_generate_model(scenario, usdname, role):
 
     stager.BuildStage(scenario, role, usdfile, assetroot)
 
+    # now reload the stage
+    nprim = 0
+    stage = Usd.Stage.Open(usdfile)
+    for prim_ref in stage.Traverse():
+        nprim += 1
+    assert nprim >= 100
+
 
 def test_complete_model():
     do_generate_model("DroneComplete", "drone_complete_model.usda", "Admin")
@@ -79,4 +86,8 @@ def test_drone_design_model():
 
 
 def test_payload_camera_design_model():
-    do_generate_model("PayloadDesignCamera", "payload_design_model.usda", "PayloadDesigner")
+    do_generate_model("PayloadDesignCamera", "payload_camera_design_model.usda", "PayloadDesigner")
+
+
+def test_payload_radar_design_model():
+    do_generate_model("PayloadDesignRadar", "payload_radar_design_model.usda", "PayloadDesigner")

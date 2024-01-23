@@ -165,7 +165,6 @@ class Stager:
         floatlist = self.StringToListOfNumbers(string)
         return Gf.Vec3f(floatlist)
 
-
     def _FindFacet(self, facetId):
         for facet in self.facets:
             if facet['id'] == facetId:

@@ -64,6 +64,21 @@
                 31,
                 41
             ]
+        },
+        {
+            "id": 5,
+            "name": "PayloadDesignRadar",
+            "description": "Payload Radar Design - for Radar Designers",
+            "roles": [
+                "Admin",
+                "PayloadDesigner"
+            ],
+            "facetLayout": [
+                12,
+                22,
+                31,
+                51
+            ]
         }
     ],
     "facets": [
