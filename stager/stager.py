@@ -1,5 +1,5 @@
 from colored import fg, bg, Style
-from pxr import Usd
+from pxr import Usd, Sdf
 
 r1 = bg('navy_blue') + fg('red')
 c1 = bg('navy_blue') + fg('white')
@@ -159,5 +159,15 @@ class Stager:
                 assetPath = assetIdentifier
                 if assetRoot is not None:
                     assetPath = assetRoot + "/" + assetIdentifier
-
-                refPrim.GetReferences().AddReference(assetPath)
+                rv = refPrim.GetReferences().AddReference(assetPath)
+                if "rootprimname" in facet:
+                    rpn = facet["rootprimname"]
+                    prim = stage.GetPrimAtPath(f"/refPrim{rpn}")
+                aprim = stage.GetPrimAtPath("/refPrim")
+                # if assetLayer is None:
+                #     self.Error(f'Failed to find asset with path: {assetPath}')
+                #     exit(1)
+                # if "transOp" in latestVersion:
+                #     pt = (0, 10, 0)
+                #     print(assetLayer)
+                #     assetLayer.AddTranslateOp().Set(pt)

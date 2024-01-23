@@ -3,12 +3,12 @@
     customLayerData = {
         dictionary cameraSettings = {
             dictionary Front = {
-                double3 position = (50000, 0, 0)
-                double radius = 500
+                double3 position = (50000, 0.01580246412341531, -8.988496826778762)
+                double radius = 78.71492309570313
             }
             dictionary Perspective = {
                 double3 position = (-92.38076644820843, -39.176549089511084, 16.874458558686257)
-                double3 target = (-9.385719786686778, -1.0869105142596496, 2.156012145823574)
+                double3 target = (-9.385721567936557, -1.0869113317440977, 2.1559999860810226)
             }
             dictionary Right = {
                 double3 position = (0, -50000, 0)
@@ -18,7 +18,7 @@
                 double3 position = (0, 0, 50000)
                 double radius = 500
             }
-            string boundCamera = "/OmniverseKit_Persp"
+            string boundCamera = "/OmniverseKit_Front"
         }
         dictionary navmeshSettings = {
             double agentHeight = 180
@@ -28,7 +28,7 @@
             double voxelCeiling = 460
         }
         dictionary omni_layer = {
-            string authoring_layer = "./Payload_Camera_Mock.usd"
+            string authoring_layer = "./Payload_Camera_Mock.usda"
             dictionary locked = {
             }
             dictionary muteness = {
@@ -196,10 +196,11 @@ def Xform "Root" (
             interpolation = "faceVarying"
         )
         uniform token subdivisionScheme = "none"
+        token visibility = "inherited"
         double3 xformOp:rotateXYZ = (0, 0, 0)
         double3 xformOp:scale = (0.16723730274884377, 0.16776605270886097, 0.1796448752929877)
-        double3 xformOp:translate = (-4.118429431079307, 25.385729323504176, -1.4710271855481363)
+        double3 xformOp:translate = (-4.118429431079307, 25.016443292579126, -1.9265993388119398)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
     }
-
 }
+

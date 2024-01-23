@@ -71,6 +71,7 @@
             "id": 11,
             "name": "DbComplete",
             "description": "Complete drone with all detail",
+            "rootprimname" : "/Drone_Large1",
             "versions": [
                 {
                     "id": 3,
@@ -102,13 +103,14 @@
                     "id": 3,
                     "description": "",
                     "assetIdentifier": "./Drone/CircuitBoard.usda",
-                    "previousVersion": 0
+                    "previousVersion": 0,
+                    "transOp" : "(0,10,0)"
                 }
             ]
         },
         {
             "id": 22,
-            "name": "CircuitBoard",
+            "name": "CircuitBoardMock",
             "description": "Mock circuitboard placeholder",
             "versions": [
                 {
@@ -120,27 +122,14 @@
             ]
         },
         {
-            "id": 21,
-            "name": "CircuitBoard",
-            "description": "Complete circuitboard with all detail",
-            "versions": [
-                {
-                    "id": 3,
-                    "description": "",
-                    "assetIdentifier": "./Drone/CircuitBoard.usda",
-                    "previousVersion": 0
-                }
-            ]
-        },
-        {
             "id": 31,
-            "name": "DronePayloadBracket",
+            "name": "Payload_Bracket",
             "description": "Drone Payload Bracket holds the payloads",
             "versions": [
                 {
                     "id": 2,
                     "description": "",
-                    "assetIdentifier": "./Drone/DronePayloadBracket.usda",
+                    "assetIdentifier": "./Drone/Payload_Bracket.usda",
                     "previousVersion": 0
                 }
             ]

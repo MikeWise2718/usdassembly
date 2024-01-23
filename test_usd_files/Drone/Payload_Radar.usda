@@ -7,8 +7,8 @@
                 double radius = 500
             }
             dictionary Perspective = {
-                double3 position = (60.57382888211999, 27.247805974645452, 39.11725114437621)
-                double3 target = (-3.8920328025729063, 26.414405805004012, -0.5276489972445688)
+                double3 position = (122.2120540804009, 16.709200888586988, 75.33206079473865)
+                double3 target = (-3.031180132488444, 15.090084508044566, -1.6894104774369794)
             }
             dictionary Right = {
                 double3 position = (-50000, 0, 0)
@@ -16,9 +16,9 @@
             }
             dictionary Top = {
                 double3 position = (0, 50000, 0)
-                double radius = 500
+                double radius = 86.51007690429688
             }
-            string boundCamera = "/OmniverseKit_Persp"
+            string boundCamera = "/OmniverseKit_Front"
         }
         dictionary navmeshSettings = {
             double agentHeight = 180
@@ -28,7 +28,7 @@
             double voxelCeiling = 460
         }
         dictionary omni_layer = {
-            string authoring_layer = "./DroneRadar.usd"
+            string authoring_layer = "./Payload_Radar.usda"
             dictionary locked = {
             }
             dictionary muteness = {
@@ -82,7 +82,7 @@ def Xform "Root" (
     {
         float3 xformOp:rotateXYZ = (0, 0, 0)
         float3 xformOp:scale = (0.085, 0.085, 0.085)
-        double3 xformOp:translate = (-4.426134745080395, 25.405570682507175, -1.8075841439876148)
+        double3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
         def Mesh "RadarBase" (
@@ -123,7 +123,7 @@ def Xform "Root" (
             float3 xformOp:rotateXYZ = (0, 0, 0)
             float3 xformOp:scale = (1, 1, 1)
             double3 xformOp:translate = (0, 0, 0)
-            float3 xformOp:translate:pivot = (-0.00011444092, 111.17772, -213.61618)
+            float3 xformOp:translate:pivot = (0, 0, 0)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
 
             def GeomSubset "BaseGimbalMAT"
@@ -169,7 +169,7 @@ def Xform "Root" (
             uniform token subdivisionScheme = "none"
             float3 xformOp:rotateXYZ = (0, 0, 0)
             float3 xformOp:scale = (1.6082944, 1.492787, 1.6082944)
-            double3 xformOp:translate = (-0.35851209344999546, -74.08009592838948, -1.1522749070757712)
+            double3 xformOp:translate = (0, 0, 0)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
         }
     }
@@ -193,8 +193,8 @@ def Xform "Root" (
                     }
                     displayGroup = "Appearance"
                     displayName = "Base color"
-                    doc = """The base color of the material
-
+                    doc = """The base color of the material\r
+\r
 """
                     hidden = false
                     renderType = "color"
@@ -222,8 +222,8 @@ def Xform "Root" (
                     }
                     displayGroup = "Appearance"
                     displayName = "Base color"
-                    doc = """The base color of the material
-
+                    doc = """The base color of the material\r
+\r
 """
                     hidden = false
                     renderType = "color"
@@ -238,8 +238,8 @@ def Xform "Root" (
                     }
                     displayGroup = "Appearance"
                     displayName = "Flake Amount"
-                    doc = """The amount of metal flakes in the material
-
+                    doc = """The amount of metal flakes in the material\r
+\r
 """
                     hidden = false
                 )
@@ -253,8 +253,8 @@ def Xform "Root" (
                     }
                     displayGroup = "Appearance"
                     displayName = "Particle Size"
-                    doc = """The size of the particles in millimeters. If the paticles don't appear at all, check whether you are using the correct units in yout scene. The materials is built to use meters as scene unit
-
+                    doc = """The size of the particles in millimeters. If the paticles don't appear at all, check whether you are using the correct units in yout scene. The materials is built to use meters as scene unit\r
+\r
 """
                     hidden = false
                 )

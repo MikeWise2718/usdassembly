@@ -8,7 +8,7 @@
             }
             dictionary Perspective = {
                 double3 position = (274.5920538815626, 107.26815986140817, 186.2982011907806)
-                double3 target = (-7.205353854788143, 5.962305336142691, 0.3444930118574234)
+                double3 target = (-7.2053538547882, 5.96230533614272, 0.344493011857395)
             }
             dictionary Right = {
                 double3 position = (-50000, 0, 0)
@@ -18,7 +18,7 @@
                 double3 position = (0, 50000, 0)
                 double radius = 500
             }
-            string boundCamera = "/OmniverseKit_Persp"
+            string boundCamera = "/OmniverseKit_Top"
         }
         string creator = "NVIDIA Omniverse Maya Native Connector: 207.0.0-rc.5"
         dictionary navmeshSettings = {
@@ -29,12 +29,13 @@
             double voxelCeiling = 460
         }
         dictionary omni_layer = {
-            string authoring_layer = "./DroneCircuitBoard_reduced.usd"
+            string authoring_layer = "./CircuitBoard.usda"
             dictionary locked = {
             }
             dictionary muteness = {
             }
         }
+        int refinementOverrideImplVersion = 0
         dictionary renderSettings = {
             float3 "rtx:debugView:pixelDebug:textColor" = (0, 1e18, 0)
             float3 "rtx:fog:fogColor" = (0.75, 0.75, 0.75)
@@ -71,19 +72,29 @@
         }
     }
     defaultPrim = "CircuitBoard"
+    endTimeCode = 0
     framesPerSecond = 24
     metersPerUnit = 0.01
+    startTimeCode = -1
+    subLayers = [
+        @./CirCuitBoard_Mock.usda@
+    ]
     timeCodesPerSecond = 24
     upAxis = "Y"
 )
 
 def Xform "CircuitBoard"
 {
+    float3 xformOp:rotateXYZ = (0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
     def Xform "CircuitBoard"
     {
         double3 xformOp:rotateXYZ = (0, 0, 0)
         double3 xformOp:scale = (1, 1, 1)
-        double3 xformOp:translate = (0, 0, 0)
+        double3 xformOp:translate = (1.6291535567556474, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
         def Mesh "CircuitBoard_Reduced" (
@@ -196,6 +207,19 @@ def Xform "CircuitBoard"
                 }
             }
         }
+    }
+}
+
+over "CircuitBoardMock" (
+    active = false
+)
+{
+    over "DroneCircuitBoard_Proxy"
+    {
+        float3 xformOp:rotateXYZ = (0, 0, 0)
+        float3 xformOp:scale = (0.23285444, 0.020397484, 0.2420976)
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
     }
 }
 

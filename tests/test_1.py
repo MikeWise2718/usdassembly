@@ -71,7 +71,7 @@ def test_complete_model():
 
 
 def test_minimal_model():
-    do_generate_model("DroneMinimal", "drone_complete_model.usda", "ProgramManager")
+    do_generate_model("DroneMinimal", "drone_minimal_model.usda", "ProgramManager")
 
 
 def test_drone_design_model():

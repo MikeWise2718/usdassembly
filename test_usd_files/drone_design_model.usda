@@ -4,7 +4,7 @@ over "refPrim" (
     prepend references = [
         @./Drone/Drone_Complete.usda@,
         @./Drone/CircuitBoard.usda@,
-        @./Drone/DronePayloadBracket.usda@,
+        @./Drone/Payload_Bracket.usda@,
         @./Drone/Payload_Camera_Mock.usda@
     ]
 )
