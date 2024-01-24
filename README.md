@@ -33,10 +33,10 @@ python buildstage.py -c BaeDefs.json -s DroneDesign -of out.usda -a a -r Admin
 - To run them all just enter `pytest tests`
 - you can add tests by copying to a new test file (one starting with `test_`)
 - And then to that file you just add test functions that are named starting with `test_`
-- To run tests from the main directory:
-      - `pytest tests/test_1.py`
-      - `pytest -rP tests/test_1.py` - show captured output of passed tests
-      - `pytest -rx tests/test_1.py` - show captured output of failed tests
+- To run all those test files in `tests` from the main directory:
+      - `pytest tests`
+      - `pytest -rP tests` - show captured output of passed tests
+      - `pytest -rx tests` - show captured output of failed tests
 
 ## Code coverage
 - First get the pytests running...

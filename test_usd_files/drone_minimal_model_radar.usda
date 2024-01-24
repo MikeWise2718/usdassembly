@@ -24,13 +24,10 @@ def "World"
         uniform token[] xformOpOrder = ["xformOp:translate"]
     }
 
-    def Xform "PayloadCamera" (
-        prepend references = @./Drone/Payload_Camera.usda@
+    def Xform "PayloadRadarMock" (
+        prepend references = @./Drone/Payload_Radar_Mock.usda@
     )
     {
-        float xformOp:rotateX = -90
-        double3 xformOp:translate = (0, 33.20000076293945, -1.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateX"]
     }
 }
 

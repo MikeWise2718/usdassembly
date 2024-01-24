@@ -81,6 +81,10 @@ def test_minimal_model():
     do_generate_model("DroneMinimal", "drone_minimal_model.usda", "ProgramManager")
 
 
+def test_minimal_model_radar():
+    do_generate_model("DroneMinimalRadar", "drone_minimal_model_radar.usda", "ProgramManager")
+
+
 def test_drone_design_model():
     do_generate_model("DroneDesign", "drone_design_model.usda", "DroneDesigner")
 

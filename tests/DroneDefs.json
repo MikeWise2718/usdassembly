@@ -37,6 +37,23 @@
         },
         {
             "id": 3,
+            "name": "DroneMinimalRadar",
+            "description": "Minimum Drone and Payload - for Collabration",
+            "roles": [
+                "Admin",
+                "DroneDesigner",
+                "PayloadDesigner",
+                "ProgramManager"
+            ],
+            "facetLayout": [
+                12,
+                22,
+                31,
+                52
+            ]
+        },
+        {
+            "id": 4,
             "name": "DroneDesign",
             "description": "Drone Design - for Drone Designers",
             "roles": [
@@ -51,7 +68,7 @@
             ]
         },
         {
-            "id": 4,
+            "id": 5,
             "name": "PayloadDesignCamera",
             "description": "Payload Camera Design - for Camera Designers",
             "roles": [
@@ -66,7 +83,7 @@
             ]
         },
         {
-            "id": 5,
+            "id": 6,
             "name": "PayloadDesignRadar",
             "description": "Payload Radar Design - for Radar Designers",
             "roles": [
